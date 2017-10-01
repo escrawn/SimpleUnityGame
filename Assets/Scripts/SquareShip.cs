@@ -11,51 +11,49 @@ public class SquareShip : Enemy
 
     public SquareShip(int health, int damage, float shootSpeed, float speed, GameObject body) : base(health, damage, shootSpeed, speed, body)
     {
-        health = 50;
-        damage = 5;
-        shootSpeed = 2;
-        speed = 0;
+        this.Health = 100;
+        this.Damage = 10;
+        this.ShootSpeed = 2;
+        this.Speed = 0;
+        
         
     }
+
 
     public override void attack()
     {
 
     }
 
-    public override void takeDamage()
+    override
+    public void takeDamage(Projectil projectil)
     {
 
     }
-
-    /*
-    private void OnTriggerEnter(Collider myCollider)
-    {
-        if (myCollider.gameObject.tag == "bulletTrigger")
-        {
-            Destroy(myCollider.gameObject);
-        }
-        
-    }
-     */
-
 
     private void doDamage(Enemy enemy)
     {
-        if(ssDamage == true)
-        {
-            enemy.Health -= Damage;
-        }
       
+    }
+
+    private void controllDamage()
+    {
+        if(Health <= 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
 
 
-        if (other.gameObject.tag == "enemy")
+        Projectil projectil = (Projectil) other.GetComponent("Projectil");
+
+        if (other.gameObject.tag == "bulletTrigger")
         {
 
-            ssDamage = true;
+            this.Health -= projectil.Damage;
+            Destroy(other.gameObject);
 
         }
     }
@@ -69,6 +67,6 @@ public class SquareShip : Enemy
     // Update is called once per frame
     void Update()
     {
-
+        controllDamage();
     }
 }

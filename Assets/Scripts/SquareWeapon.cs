@@ -9,7 +9,7 @@ public class SquareWeapon : Weapon
     public Player player;
     public Projectil prj1;
 
-
+   
    
 
     public SquareWeapon(Projectil projectil) : base(projectil)

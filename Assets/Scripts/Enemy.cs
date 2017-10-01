@@ -87,5 +87,5 @@ public abstract class Enemy : MonoBehaviour
     }
 
     public abstract void attack();
-    public abstract void takeDamage();
+    public abstract void takeDamage(Projectil projectil);
 }
