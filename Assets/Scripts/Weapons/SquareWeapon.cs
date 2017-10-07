@@ -21,7 +21,7 @@ public class SquareWeapon : Weapon
     void Start()
     {
 
-        InvokeRepeating("shoot", 0.5f, prj1.shootRate);
+        InvokeRepeating("shoot", 0.5f, prj1.shootRate*0.5f);
 
     }
 
@@ -38,9 +38,9 @@ public class SquareWeapon : Weapon
     public void shoot()
     {
 
-        Vector3 velocity = new Vector3(prj1.speed, 0, 0);
+        Vector3 velocity = new Vector3(prj1.speed*5, 0, 0);
         Projectil instance = Instantiate(prj1);
-        instance.GetComponent<Rigidbody>().position = player.transform.position;
+        instance.GetComponent<Rigidbody>().position = player.transform.position+new Vector3(1,0,0);
         instance.GetComponent<Rigidbody>().velocity = velocity;
 
         instance.GetComponent<AudioSource>().Play();

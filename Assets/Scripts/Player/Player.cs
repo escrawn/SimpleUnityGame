@@ -57,7 +57,18 @@ public class Player : MonoBehaviour
 
     private void move()
     {
+
+        /*
         transform.Translate(Input.acceleration.x, 0, -Input.acceleration.z);
+        */
+        if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
+        {
+            transform.Translate(Input.GetAxis("Vertical"), 0, -Input.GetAxis("Horizontal"));
+        }
+        else
+        {
+            transform.Translate(0, 0, 0);
+        }
     }
 
     public string Name
