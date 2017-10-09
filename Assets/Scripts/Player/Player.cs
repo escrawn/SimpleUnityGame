@@ -11,20 +11,23 @@ public class Player : MonoBehaviour
     private new string name;
     [SerializeField]
     private Rigidbody rbPlayer;
+    [SerializeField]
+    private int speed;
 
 
 
-    public Player(int health, string name)
+    public Player(int health, string name,int speed)
     {
 
         this.Health = health;
         this.Name = name;
+        this.Speed = speed;
 
     }
 
     public Player()
     {
-        this.Health = 0;
+        this.Health = 1;
         this.Name = "No name";
     }
 
@@ -41,6 +44,8 @@ public class Player : MonoBehaviour
     {
         move();
     }
+
+
 
     public int Health
     {
@@ -63,7 +68,7 @@ public class Player : MonoBehaviour
         */
         if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
         {
-            transform.Translate(Input.GetAxis("Vertical"), 0, -Input.GetAxis("Horizontal"));
+            transform.Translate(Input.GetAxis("Vertical")*speed, 0, -Input.GetAxis("Horizontal")*speed);
         }
         else
         {
@@ -84,6 +89,16 @@ public class Player : MonoBehaviour
         }
     }
 
+    public int Speed
+    {
+        get
+        {
+            return speed;
+        }
 
-
+        set
+        {
+            speed = value;
+        }
+    }
 }
