@@ -4,7 +4,8 @@ using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour {
 
-    private Projectil projectil;
+
+    public Projectil projectil;
 
     public Weapon(Projectil projectil)
     {

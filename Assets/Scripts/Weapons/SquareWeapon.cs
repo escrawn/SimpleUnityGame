@@ -6,8 +6,7 @@ public class SquareWeapon : Weapon
 {
 
 
-    public Player player;
-    public Projectil prj1;
+    public GameObject player;
 
    
    
@@ -21,10 +20,14 @@ public class SquareWeapon : Weapon
     void Start()
     {
 
-        InvokeRepeating("shoot", 0.5f, prj1.shootRate*0.5f);
+        invokeProjectil();
 
     }
 
+    public void invokeProjectil()
+    {
+        InvokeRepeating("shoot", 0.5f, projectil.shootRate * 0.5f);
+    }
 
     // Update is called once per frame
     void Update()
@@ -38,8 +41,8 @@ public class SquareWeapon : Weapon
     public void shoot()
     {
 
-        Vector3 velocity = new Vector3(prj1.speed*5, 0, 0);
-        Projectil instance = Instantiate(prj1);
+        Vector3 velocity = new Vector3(projectil.speed*5, 0, 0);
+        Projectil instance = Instantiate(projectil);
         instance.GetComponent<Rigidbody>().position = player.transform.position+new Vector3(1,0,0);
         instance.GetComponent<Rigidbody>().velocity = velocity;
 
@@ -51,7 +54,7 @@ public class SquareWeapon : Weapon
 
     }
 
-    public Player Player
+    public GameObject Player
     {
         get
         {
@@ -68,12 +71,12 @@ public class SquareWeapon : Weapon
     {
         get
         {
-            return prj1;
+            return projectil;
         }
 
         set
         {
-            prj1 = value;
+            projectil = value;
         }
     }
 }

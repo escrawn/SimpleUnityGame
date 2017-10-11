@@ -9,6 +9,7 @@ public class SquareShip : Enemy
 
     public bool ssDamage = false;
 
+
     public SquareShip(int health, int damage, float shootSpeed, float speed, GameObject body) : base(health, damage, shootSpeed, speed, body)
     {
         this.Health = 100;
@@ -20,15 +21,10 @@ public class SquareShip : Enemy
     }
 
 
-    public override void attack()
+
+    public override void takeDamage(Projectil projectil)
     {
-
-    }
-
-    override
-    public void takeDamage(Projectil projectil)
-    {
-
+        
     }
 
     private void doDamage(Enemy enemy)
@@ -36,13 +32,7 @@ public class SquareShip : Enemy
       
     }
 
-    private void controllDamage()
-    {
-        if(Health <= 0)
-        {
-            Destroy(this.gameObject);
-        }
-    }
+
     private void OnTriggerEnter(Collider other)
     {
 
@@ -67,6 +57,7 @@ public class SquareShip : Enemy
     // Update is called once per frame
     void Update()
     {
-        controllDamage();
+        this.lifeControll();
+
     }
 }

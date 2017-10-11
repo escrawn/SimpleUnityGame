@@ -8,9 +8,12 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField]
     private int health;
     private int damage;
+    [SerializeField]
     private float shootSpeed;
     private float speed;
+    public Projectil projectil;
     public GameObject body;
+
 
     public Enemy(int health, int damage, float shootSpeed, float speed, GameObject body)
     {
@@ -86,6 +89,31 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-    public abstract void attack();
+
+    public void lifeControll()
+    {
+        if (Health <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+   
+    public  void shoot()
+    {
+        Vector3 velocity = new Vector3(projectil.speed * 5, 0, 0);
+        Projectil instance = Instantiate(projectil);
+        instance.GetComponent<Rigidbody>().position = body.transform.position + new Vector3(1, 0, 0);
+        instance.GetComponent<Rigidbody>().velocity = transform.forward*projectil.speed*5;
+   
+
+        instance.GetComponent<AudioSource>().Play();
+        Destroy(instance.gameObject, 0.8f);
+    }
+
+    public void invokeProjectil()
+    {
+        InvokeRepeating("shoot", 0.5f, projectil.shootRate * 0.5f);
+    }
     public abstract void takeDamage(Projectil projectil);
 }
